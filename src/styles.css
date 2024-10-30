@@ -1,0 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=VT323&display=swap");
+
+:root {
+  --gradient1_fallback: #56ccf2;
+  --gradient1_main: linear-gradient(to right, #2f80ed, #56ccf2);
+  --gradient2_fallback: #fdfbfb;
+  --gradient2_main: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+
+  --size01: 4px;
+  --size02: 8px;
+  --size03: 12px;
+  --size04: 16px;
+  --size05: 20px;
+  --size06: 28px;
+  --size07: 40px;
+  --size08: 60px;
+  --size09: 100px;
+  --size10: 160px;
+  --size11: 240px;
+
+  --box-shadow_1: 5px 5px 5px 0px rgba(0, 0, 0, 0.336);
+}
+
+.txtSmall {
+  font-size: var(--size04);
+  line-height: var(--size05);
+}
+
+.txtNormal {
+  font-size: var(--size06);
+  line-height: var(--size07);
+}
+
+.txtBig {
+  font-size: var(--size07);
+  line-height: var(--size07);
+  font-weight: 500;
+  align-self: center;
+}
+
+.txtVeryBig {
+  font-size: var(--size08);
+  line-height: var(--size09);
+  font-weight: 500;
+  align-self: center;
+}
+
+body {
+  height: 100%;
+  background-color: var(--gradient1_fallback);
+  background-image: var(--gradient1_main);
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  color: var(--gradient2_fallback);
+}
+
+#switchUnitsBtn {
+  position: absolute;
+}
+
+#searchContainer {
+  margin: auto;
+  justify-content: left;
+  width: 90%;
+  align-items: center;
+  padding: var(--size06) 0;
+  display: flex;
+  justify-content: left;
+  gap: var(--size02);
+  margin: auto;
+}
+
+#searchBtn {
+  height: var(--size07);
+  width: var(--size07);
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--gradient2_fallback);
+  border: none;
+  border-radius: 50%;
+  font-size: var(--size05);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+#searchBtn > svg {
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+}
+
+.card {
+  border-radius: var(--size02);
+  padding: var(--size04);
+  width: 90%;
+  margin: auto;
+}
+
+#mainCardContainer1 {
+  display: flex;
+  gap: var(--size06);
+  align-items: center;
+}
+
+#mainCardContainer2 {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  row-gap: var(--size01);
+  padding: var(--size04) 0;
+}
+
+#mainCardContainer3 {
+  display: flex;
+  align-items: center;
+  gap: var(--size03);
+}
+
+#refreshBtn {
+  display: flex;
+  cursor: pointer;
+  transition: transform 1s ease;
+}
+
+#refreshBtn:hover {
+  transform: scale(1.2);
+  transition: transform 1s ease;
+}
+
+#refreshBtn.rotating {
+  transform: scale(1.2) rotate(360deg) ;
+  transition: transform 1s ease;
+}
+
+#refreshBtn>svg {
+  height: var(--size05);
+  align-self: center;
+}
+
+input[type="text"] {
+  height: var(--size06);
+  width: 20vw;
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--gradient2_fallback);
+  border-radius: var(--size02);
+  border: none;
+  outline: 2px solid white;
+  padding: var(--size01);
+  padding-left: var(--size02);
+  font-size: var(--size04);
+  line-height: var(--size05);
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  transition-property: padding, font-size, line-height, width, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+input[type="text"]:hover:not(:focus) {
+  width: 25vw;
+}
+
+input[type="text"]:focus {
+  width: 40vw;
+  padding: var(--size01);
+  padding-left: var(--size02);
+  font-size: var(--size05);
+  line-height: var(--size06);
+}
+
+input[type="text"]::placeholder {
+  color: white;
+}
+
+.knobs,
+.layer {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  position: relative;
+  top: 0px;
+  right: 0px;
+  width: 74px;
+  height: 36px;
+  overflow: hidden;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 100px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #ffffff;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+#button-1 .knobs:before {
+  font-family: "Montserrat", sans-serif;
+  content: "°C";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 10px;
+  color: #fff;
+  font-size: var(--size04);
+  font-weight: bold;
+  text-align: center;
+  line-height: var(--size03);
+  padding: 9px 4px;
+  background-color: #03a9f4;
+  border-radius: 50%;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#button-1 .checkbox:checked + .knobs:before {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  content: "°F";
+  left: 42px;
+  background-color: #03a9f4;
+  color: #fff;
+}
+
+#button-1 .checkbox:checked ~ .layer {
+  background-color: #ffffff;
+}
+
+#button-1 .knobs,
+#button-1 .knobs:before,
+#button-1 .layer {
+  transition: 0.3s ease all;
+}
+
+#button-2 .knobs:before {
+  font-family: "Montserrat", sans-serif;
+  content: "EN";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 10px;
+  color: #fff;
+  font-size: var(--size03);
+  font-weight: bold;
+  text-align: center;
+  line-height: var(--size03);
+  padding: 9px 4px;
+  background-color: #03a9f4;
+  border-radius: 50%;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#button-2 .checkbox:checked + .knobs:before {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-style: normal;
+  content: "RU";
+  left: 42px;
+  background-color: #03a9f4;
+  color: #fff;
+}
+
+#button-2 .checkbox:checked ~ .layer {
+  background-color: #ffffff;
+}
+
+#button-2 .knobs,
+#button-2 .knobs:before,
+#button-2 .layer {
+  transition: 0.3s ease all;
+}
+
+#currentIcon>svg {
+  height: var(--size08);
+}
+
+.svgIcon>svg {
+  fill: #fff;
+  stroke: #fff;
+}

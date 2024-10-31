@@ -14,9 +14,7 @@ export function switchUnits() {
 
 export function switchLanguage() {
   const AppData = JSON.parse(localStorage.getItem("WeatherAppData"));
-  AppData.lang === "en"
-    ? (AppData.lang = "ru")
-    : (AppData.lang = "en");
+  AppData.lang === "en" ? (AppData.lang = "ru") : (AppData.lang = "en");
   localStorage.setItem("WeatherAppData", JSON.stringify(AppData));
 }
 
@@ -101,7 +99,7 @@ function getCurrentDate() {
   return dateFormatted;
 }
 
-function getCurrentDateAndTime() {
+export function getCurrentDateAndTime() {
   const currentdate = new Date();
   let datetime =
     currentdate.getFullYear() +
@@ -116,6 +114,11 @@ function getCurrentDateAndTime() {
     ":" +
     currentdate.getSeconds().toString().padStart(2, "0");
   return datetime;
+}
+
+function getCurrentHour() {
+  let currentDate = new Date();
+  return currentDate.getHours();
 }
 
 export async function getData() {
@@ -231,9 +234,11 @@ export function getWindDirection(day) {
 
 export function getWindSpeed(data) {
   let speed = data.currentConditions.windspeed;
-  let displayedUnits = readUnits();
-  let dataUnits = data.units;
-  if (dataUnits === "metric") {speed = ((speed * 1000) / 3600).toFixed(1)}
+  const displayedUnits = readUnits();
+  const dataUnits = data.units;
+  if (dataUnits === "metric") {
+    speed = ((speed * 1000) / 3600).toFixed(1);
+  }
 
   if (checkNeedToConvert(dataUnits, displayedUnits)) {
     return convertWindSpeed(speed, dataUnits);
@@ -241,9 +246,9 @@ export function getWindSpeed(data) {
 }
 
 export function getCurrentTemp(data) {
-  let temp = data.currentConditions.temp;
-  let displayedUnits = readUnits();
-  let dataUnits = data.units;
+  const temp = data.currentConditions.temp;
+  const displayedUnits = readUnits();
+  const dataUnits = data.units;
 
   if (checkNeedToConvert(dataUnits, displayedUnits)) {
     return convertTemp(temp, dataUnits);
@@ -251,9 +256,9 @@ export function getCurrentTemp(data) {
 }
 
 export function getMinTemp(data, day = 0) {
-  let temp = data.days[day].tempmin;
-  let displayedUnits = readUnits();
-  let dataUnits = data.units;
+  const temp = data.days[day].tempmin;
+  const displayedUnits = readUnits();
+  const dataUnits = data.units;
 
   if (checkNeedToConvert(dataUnits, displayedUnits)) {
     return convertTemp(temp, dataUnits);
@@ -261,23 +266,23 @@ export function getMinTemp(data, day = 0) {
 }
 
 export function getCurrentFeelsLike(data) {
-  let temp = data.currentConditions.feelslike;
-  let displayedUnits = readUnits();
-  let dataUnits = data.units;
+  const temp = data.currentConditions.feelslike;
+  const displayedUnits = readUnits();
+  const dataUnits = data.units;
 
   if (checkNeedToConvert(dataUnits, displayedUnits)) {
     return convertTemp(temp, dataUnits);
   } else return temp;
 }
 export function getHumidity(day) {
-  let humidity = day.humidity;
+  const humidity = day.humidity;
   return humidity;
 }
 
 export function getPressure(data) {
-  let pressure = data.currentConditions.pressure;
-  let displayedUnits = readUnits();
-  let dataUnits = data.units;
+  const pressure = data.currentConditions.pressure;
+  const displayedUnits = readUnits();
+  const dataUnits = data.units;
 
   if (checkNeedToConvert(dataUnits, displayedUnits)) {
     return convertPressure(pressure, dataUnits);
@@ -317,7 +322,7 @@ function convertWindSpeed(speed, from) {
 export function getTempUnit() {
   const units = readUnits();
   let unit;
-  units === "metric" ? unit = "°С" : unit = "°F";
+  units === "metric" ? (unit = "°С") : (unit = "°F");
   return unit;
 }
 
@@ -327,8 +332,8 @@ export function getSpeedUnit() {
   let unit;
 
   if (lang === "ru") {
-    units === "metric" ? unit = "м/с" : unit = "миль/ч";
-  } else units === "metric" ? unit = "m/s" : unit = "mph";
+    units === "metric" ? (unit = "м/с") : (unit = "миль/ч");
+  } else units === "metric" ? (unit = "m/s") : (unit = "mph");
   return unit;
 }
 
@@ -338,7 +343,88 @@ export function getPressureUnit() {
   let unit;
 
   if (lang === "ru") {
-    units === "metric" ? unit = "мм рт. ст." : unit = "мбар";
-  } else units === "metric" ? unit = "mmHg" : unit = "mbar";
+    units === "metric" ? (unit = "мм рт. ст.") : (unit = "мбар");
+  } else units === "metric" ? (unit = "mmHg") : (unit = "mbar");
   return unit;
+}
+
+export function getNext12HoursData(data) {
+  const displayedUnits = readUnits();
+  const dataUnits = data.units;
+  const next12HoursData = [];
+  const currentHour = getCurrentHour();
+  let day = 0;
+  let hour = currentHour;
+
+  for (let i = 0; i < 12; i++) {
+    const hourData = {};
+    hourData.hour = data.days[day].hours[hour].datetime.slice(0, -3);
+    hourData.precipprob = data.days[day].hours[hour].precipprob;
+    hourData.icon = data.days[day].hours[hour].icon;
+    
+    const temp = data.days[day].hours[hour].temp;
+    if (checkNeedToConvert(dataUnits, displayedUnits)) {
+      hourData.temp = convertTemp(temp, dataUnits);
+    } else hourData.temp = temp;
+
+    next12HoursData.push(hourData);
+
+    if (hour !== 23) {
+      hour++;
+    } else {
+      day++;
+      hour = 0;
+    }
+  }
+
+  return next12HoursData;
+}
+
+export function getUpcomingDaysData(data) {
+  const displayedUnits = readUnits();
+  const dataUnits = data.units;
+  const upcomingDaysData = [];
+
+  const _getDay = (i) => {
+    const language = readLanguage();
+    const langArg = language === 'en' ? 'en-US' : 'ru-RU';
+    const today = language === 'en' ? 'Today' : 'Сегодня';
+    
+    const date = new Date();
+    date.setDate(date.getDate() + i);
+    const options_week = { weekday: 'short' };
+    const options_date = { month: 'short', day: '2-digit' }
+    const day_week = date.toLocaleString(langArg, options_week);
+    const day_date = date.toLocaleString(langArg, options_date);
+
+    if (i === 0) {
+      return [today, ""];
+    } else return [day_week.charAt(0).toUpperCase() + day_week.slice(1), day_date]
+  }
+
+  const _getMinTemp = (i) => {
+    const tempmin = data.days[i].tempmin
+    if (checkNeedToConvert(dataUnits, displayedUnits)) {
+      return convertTemp(tempmin, dataUnits);
+    } else return tempmin;
+  }
+
+  const _getMaxTemp = (i) => {
+    const tempmax = data.days[i].tempmax
+    if (checkNeedToConvert(dataUnits, displayedUnits)) {
+      return convertTemp(tempmax, dataUnits);
+    } else return tempmax;
+  }
+
+  for (let i = 0; i < 12; i++) {
+    const dayData = {};
+    [dayData.weekday, dayData.date] = _getDay(i);
+    dayData.precipprob = data.days[i].precipprob;
+    dayData.icon = data.days[i].icon;
+    dayData.tempmin = _getMinTemp(i);
+    dayData.tempmax = _getMaxTemp(i);
+    upcomingDaysData.push(dayData);
+  }
+
+  return upcomingDaysData;
 }

@@ -6,21 +6,31 @@
     <title>Weather App Project</title>
 </head>
 <body>
-    <div id="searchContainer">
-        <button type="submit" id="searchBtn"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
-        <input type="text" id="searchField">
-        <div class="button r" id="button-1">
-            <input type="checkbox" class="checkbox" id="unitSwitch" />
-            <div class="knobs"></div>
-            <div class="layer"></div>
+    <div id="header">
+        <div id="header_search">
+            <button type="submit" id="searchBtn"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
+            <input type="text" id="searchField">
         </div>
-        <div class="button r" id="button-2">
-            <input type="checkbox" class="checkbox" id="languageSwitch" />
-            <div class="knobs"></div>
-            <div class="layer"></div>
+        <div id="header_switches">
+            <div class="button r" id="button-1">
+                <input type="checkbox" class="checkbox" id="unitSwitch" />
+                <div class="knobs"></div>
+                <div class="layer"></div>
+            </div>
+            <div class="button r" id="button-2">
+                <input type="checkbox" class="checkbox" id="languageSwitch" />
+                <div class="knobs"></div>
+                <div class="layer"></div>
+            </div> 
         </div>
     </div>
     <div id="mainCard" class="card">
+        <div id="mainCardContainer3" class="container">
+            <div id="lastTimeUpdated" class="txtTiny"></div>
+            <div id="refreshBtn">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C9.69494 21 7.59227 20.1334 6 18.7083L3 16M3 12C3 7.02944 7.02944 3 12 3C14.3051 3 16.4077 3.86656 18 5.29168L21 8M3 21V16M3 16H8M21 3V8M21 8H16" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            </div>
+        </div>
         <div id="currentCity" class="txtBig"></div>
         <div id="mainCardContainer1" class="container">
             <div id="currentTemp" class="txtVeryBig"></div>
@@ -29,19 +39,272 @@
         <div id="currentFeelsLike" class="txtNormal"></div>
         <div id="currentConditions" class="txtNormal"></div>
         <div id="mainCardContainer2" class="container">
-            <div id="currentWind" class="txtSmall"></div>
+            <div id="currentWindContainer">
+                <div id="currentWind" class="txtSmall"></div>
+                <div id="currentWinddir"></div>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="winddirArrow"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 20L12 4M12 20L6 14M12 20L18 14" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            </div>
             <div id="currentHumidity" class="txtSmall"></div>
             <div id="currentPressure" class="txtSmall"></div>
         </div>
-        <div id="mainCardContainer3" class="container">
-            <div id="lastTimeUpdated" class="txtTiny"></div>
-            <div id="refreshBtn">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M21 12C21 16.9706 16.9706 21 12 21C9.69494 21 7.59227 20.1334 6 18.7083L3 16M3 12C3 7.02944 7.02944 3 12 3C14.3051 3 16.4077 3.86656 18 5.29168L21 8M3 21V16M3 16H8M21 3V8M21 8H16" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+    </div>
+    <div id="upcomingCardContainer" class="card">
+        <div id="upcomingHoursContainer">
+            <div id="upcomingHoursCardTitle" class="txtBig">Next 12 Hours</div>
+            <div id="hoursCard1" class="hoursCard">
+                <div id="HC1-time" class="HC-time"></div>
+                <div id="HC1-temp"></div>
+                <div id="HC1-prob"></div>
+                <div id="HC1-icon" class="svgIcon"></div>
+            </div>
+            <div class="underline"></div>
+            <div id="hoursCard2" class="hoursCard">
+                <div id="HC2-time" class="HC-time"></div>
+                <div id="HC2-temp"></div>
+                <div id="HC2-prob"></div>
+                <div id="HC2-icon" class="svgIcon"></div>
+            </div>
+            <div class="underline"></div>
+            <div id="hoursCard3" class="hoursCard">
+                <div id="HC3-time" class="HC-time"></div>
+                <div id="HC3-temp"></div>
+                <div id="HC3-prob"></div>
+                <div id="HC3-icon" class="svgIcon"></div>
+            </div>
+            <div class="underline"></div>
+            <div id="hoursCard4" class="hoursCard">
+                <div id="HC4-time" class="HC-time"></div>
+                <div id="HC4-temp"></div>
+                <div id="HC4-prob"></div>
+                <div id="HC4-icon" class="svgIcon"></div>
+            </div>
+            <div class="underline"></div>
+            <div id="hoursCard5" class="hoursCard">
+                <div id="HC5-time" class="HC-time"></div>
+                <div id="HC5-temp"></div>
+                <div id="HC5-prob"></div>
+                <div id="HC5-icon" class="svgIcon"></div>
+            </div>
+            <div class="underline"></div>
+            <div id="hoursCard6" class="hoursCard">
+                <div id="HC6-time" class="HC-time"></div>
+                <div id="HC6-temp"></div>
+                <div id="HC6-prob"></div>
+                <div id="HC6-icon" class="svgIcon"></div>
+            </div>
+            <div class="underline"></div>
+            <div id="hoursCard7" class="hoursCard">
+                <div id="HC7-time" class="HC-time"></div>
+                <div id="HC7-temp"></div>
+                <div id="HC7-prob"></div>
+                <div id="HC7-icon" class="svgIcon"></div>
+            </div>
+            <div class="underline"></div>
+            <div id="hoursCard8" class="hoursCard">
+                <div id="HC8-time" class="HC-time"></div>
+                <div id="HC8-temp"></div>
+                <div id="HC8-prob"></div>
+                <div id="HC8-icon" class="svgIcon"></div>
+            </div>
+            <div class="underline"></div>
+            <div id="hoursCard9" class="hoursCard">
+                <div id="HC9-time" class="HC-time"></div>
+                <div id="HC9-temp"></div>
+                <div id="HC9-prob"></div>
+                <div id="HC9-icon" class="svgIcon"></div>
+            </div>
+            <div class="underline"></div>
+            <div id="hoursCard10" class="hoursCard">
+                <div id="HC10-time" class="HC-time"></div>
+                <div id="HC10-temp"></div>
+                <div id="HC10-prob"></div>
+                <div id="HC10-icon" class="svgIcon"></div>
+            </div>
+            <div class="underline"></div>
+            <div id="hoursCard11" class="hoursCard">
+                <div id="HC11-time" class="HC-time"></div>
+                <div id="HC11-temp"></div>
+                <div id="HC11-prob"></div>
+                <div id="HC11-icon" class="svgIcon"></div>
+            </div>
+            <div class="underline"></div>
+            <div id="hoursCard12" class="hoursCard">
+                <div id="HC12-time" class="HC-time"></div>
+                <div id="HC12-temp"></div>
+                <div id="HC12-prob"></div>
+                <div id="HC12-icon" class="svgIcon"></div>
             </div>
         </div>
-    </div>
-    <div id="card2" class="card">
-
+        <div id="upcomingDaysContainer">
+            <div id="upcomingDaysCardTitle" class="txtBig"></div>
+            <div id="daysCard1" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC1-weekday" class="DC-week"></div>
+                    <div id="DC1-date" class="DC-date"></div>
+                </div>
+                <div id="DC1-prob"></div>
+                <div id="DC1-icon" class="svgIcon"></div>
+                <div id="DC1-tempContainer" class="DC-temp">
+                    <div id="DC1-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC1-tempmin" class="DC-temp-min"></div>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div id="daysCard2" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC2-weekday" class="DC-week"></div>
+                    <div id="DC2-date" class="DC-date"></div>
+                </div>
+                <div id="DC2-prob"></div>
+                <div id="DC2-icon" class="svgIcon"></div>
+                <div id="DC2-tempContainer" class="DC-temp">
+                    <div id="DC2-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC2-tempmin" class="DC-temp-min"></div>
+                </div>                
+            </div>
+            <div class="underline"></div>
+            <div id="daysCard3" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC3-weekday" class="DC-week"></div>
+                    <div id="DC3-date" class="DC-date"></div>
+                </div>
+                <div id="DC3-prob"></div>
+                <div id="DC3-icon" class="svgIcon"></div>
+                <div id="DC3-tempContainer" class="DC-temp">
+                    <div id="DC3-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC3-tempmin" class="DC-temp-min"></div>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div id="daysCard4" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC4-weekday" class="DC-week"></div>
+                    <div id="DC4-date" class="DC-date"></div>
+                </div>
+                <div id="DC4-prob"></div>
+                <div id="DC4-icon" class="svgIcon"></div>
+                <div id="DC4-tempContainer" class="DC-temp">
+                    <div id="DC4-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC4-tempmin" class="DC-temp-min"></div>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div id="daysCard5" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC5-weekday" class="DC-week"></div>
+                    <div id="DC5-date" class="DC-date"></div>
+                </div>
+                <div id="DC5-prob"></div>
+                <div id="DC5-icon" class="svgIcon"></div>
+                <div id="DC5-tempContainer" class="DC-temp">
+                    <div id="DC5-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC5-tempmin" class="DC-temp-min"></div>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div id="daysCard6" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC6-weekday" class="DC-week"></div>
+                    <div id="DC6-date" class="DC-date"></div>
+                </div>
+                <div id="DC6-prob"></div>
+                <div id="DC6-icon" class="svgIcon"></div>
+                <div id="DC6-tempContainer" class="DC-temp">
+                    <div id="DC6-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC6-tempmin" class="DC-temp-min"></div>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div id="daysCard7" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC7-weekday" class="DC-week"></div>
+                    <div id="DC7-date" class="DC-date"></div>
+                </div>
+                <div id="DC7-prob"></div>
+                <div id="DC7-icon" class="svgIcon"></div>
+                <div id="DC7-tempContainer" class="DC-temp">
+                    <div id="DC7-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC7-tempmin" class="DC-temp-min"></div>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div id="daysCard8" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC8-weekday" class="DC-week"></div>
+                    <div id="DC8-date" class="DC-date"></div>
+                </div>
+                <div id="DC8-prob"></div>
+                <div id="DC8-icon" class="svgIcon"></div>
+                <div id="DC8-tempContainer" class="DC-temp">
+                    <div id="DC8-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC8-tempmin" class="DC-temp-min"></div>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div id="daysCard9" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC9-weekday" class="DC-week"></div>
+                    <div id="DC9-date" class="DC-date"></div>
+                </div>
+                <div id="DC9-prob"></div>
+                <div id="DC9-icon" class="svgIcon"></div>
+                <div id="DC9-tempContainer" class="DC-temp">
+                    <div id="DC9-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC9-tempmin" class="DC-temp-min"></div>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div id="daysCard10" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC10-weekday" class="DC-week"></div>
+                    <div id="DC10-date" class="DC-date"></div>
+                </div>
+                <div id="DC10-prob"></div>
+                <div id="DC10-icon" class="svgIcon"></div>
+                <div id="DC10-tempContainer" class="DC-temp">
+                    <div id="DC10-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC10-tempmin" class="DC-temp-min"></div>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div id="daysCard11" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC11-weekday" class="DC-week"></div>
+                    <div id="DC11-date" class="DC-date"></div>
+                </div>
+                <div id="DC11-prob"></div>
+                <div id="DC11-icon" class="svgIcon"></div>
+                <div id="DC11-tempContainer" class="DC-temp">
+                    <div id="DC11-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC11-tempmin" class="DC-temp-min"></div>
+                </div>
+            </div>
+            <div class="underline"></div>
+            <div id="daysCard12" class="daysCard">
+                <div class="DC-day_container">
+                    <div id="DC12-weekday" class="DC-week"></div>
+                    <div id="DC12-date" class="DC-date"></div>
+                </div>
+                <div id="DC12-prob"></div>
+                <div id="DC12-icon" class="svgIcon"></div>
+                <div id="DC12-tempContainer" class="DC-temp">
+                    <div id="DC12-tempmax" class="DC-temp-max"></div>
+                    <div class="DC-temp-divider"></div>
+                    <div id="DC12-tempmin" class="DC-temp-min"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

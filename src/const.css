@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=VT323&display=swap");
+
+@media screen and (max-width: 600px) {
+  :root {
+    --size01: 3px;
+    --size02: 6px;
+    --size03: 9px;
+    --size04: 12px;
+    --size05: 15px;
+    --size06: 21px;
+    --size07: 30px;
+    --size08: 45px;
+    --size09: 75px;
+    --size10: 111px;
+    --size11: 171px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  :root {
+    --size01: 4px;
+    --size02: 8px;
+    --size03: 12px;
+    --size04: 16px;
+    --size05: 20px;
+    --size06: 28px;
+    --size07: 40px;
+    --size08: 60px;
+    --size09: 100px;
+    --size10: 160px;
+    --size11: 240px;
+  }
+}
+
+
+
+
+:root {
+  --gradient1_fallback: #3a7bd5;
+  --gradient1_main: linear-gradient(to right, #3a6073, #3a7bd5);
+  --gradient2_fallback: #fdfbfb;
+  --gradient2_main: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+
+  --box-shadow_1: 5px 5px 5px 0px rgba(0, 0, 0, 0.336);
+}
+
+.txtSmall {
+  font-size: var(--size04);
+  line-height: var(--size05);
+}
+
+.txtNormal {
+  font-size: var(--size06);
+  line-height: var(--size07);
+}
+
+.txtBig {
+  font-size: var(--size07);
+  line-height: var(--size07);
+  font-weight: 500;
+  align-self: center;
+}
+
+.txtVeryBig {
+  font-size: var(--size08);
+  line-height: var(--size09);
+  font-weight: 500;
+  align-self: center;
+}

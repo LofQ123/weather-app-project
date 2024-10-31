@@ -1,48 +1,94 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=VT323&display=swap");
+@media screen and (max-width: 800px) {
+  #header {
+    flex-direction: column;
+    align-items: baseline;
+  }
 
-:root {
-  --gradient1_fallback: #56ccf2;
-  --gradient1_main: linear-gradient(to right, #2f80ed, #56ccf2);
-  --gradient2_fallback: #fdfbfb;
-  --gradient2_main: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  #upcomingCardContainer {
+    flex-direction: column;
+    gap: var(--size06);
+  }
 
-  --size01: 4px;
-  --size02: 8px;
-  --size03: 12px;
-  --size04: 16px;
-  --size05: 20px;
-  --size06: 28px;
-  --size07: 40px;
-  --size08: 60px;
-  --size09: 100px;
-  --size10: 160px;
-  --size11: 240px;
+  #upcomingHoursContainer {
+    width: 100%;
+  }
 
-  --box-shadow_1: 5px 5px 5px 0px rgba(0, 0, 0, 0.336);
+  #upcomingDaysContainer {
+    width: 100%;
+  }
+
+  .DC-day_container {
+    flex-direction: column;
+  }
+
+  .daysCard{
+    grid-template-columns: 2fr 1fr 1fr 3fr;
+  }
+
+  .DC-date {
+    padding-left: 15%;
+  }
+  .HC-time {
+    justify-self: left;
+    padding-left: 15%;
+  }
+
+  input[type="text"] {
+    width: 40vw;
+  }
+
+  input[type="text"]:hover:not(:focus) {
+    width: 50vw;
+  }
+
+  input[type="text"]:focus {
+    width: 70vw;
+  }
 }
 
-.txtSmall {
-  font-size: var(--size04);
-  line-height: var(--size05);
-}
+@media screen and (min-width: 800px) {
+  #header {
+    flex-direction: row;
+    align-items: center;
+  }
 
-.txtNormal {
-  font-size: var(--size06);
-  line-height: var(--size07);
-}
+  #upcomingCardContainer {
+    flex-direction: row;
+  }
 
-.txtBig {
-  font-size: var(--size07);
-  line-height: var(--size07);
-  font-weight: 500;
-  align-self: center;
-}
+  #upcomingHoursContainer {
+    width: 44%;
+  }
 
-.txtVeryBig {
-  font-size: var(--size08);
-  line-height: var(--size09);
-  font-weight: 500;
-  align-self: center;
+  #upcomingDaysContainer {
+    width: 46%;
+  }
+
+  .DC-day_container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .daysCard{
+    grid-template-columns: 3fr 1fr 1fr 3fr;
+  }
+
+  .HC-time {
+    justify-self: left;
+    padding-left: 30%;
+  }
+
+  input[type="text"] {
+    width: 20vw;
+  }
+
+  input[type="text"]:hover:not(:focus) {
+    width: 25vw;
+  }
+
+  input[type="text"]:focus {
+    width: 40vw;
+  }
 }
 
 body {
@@ -56,20 +102,37 @@ body {
   color: var(--gradient2_fallback);
 }
 
+#header_search {
+  align-items: center;
+}
+
+#header_switches {
+  align-items: center;
+}
+
 #switchUnitsBtn {
   position: absolute;
 }
 
-#searchContainer {
+#header {
   margin: auto;
   justify-content: left;
   width: 90%;
-  align-items: center;
   padding: var(--size06) 0;
   display: flex;
   justify-content: left;
-  gap: var(--size02);
+  gap: var(--size03);
   margin: auto;
+}
+
+#header_search {
+  display: flex;
+  gap: var(--size03);
+}
+
+#header_switches {
+  display: flex;
+  gap: var(--size03);
 }
 
 #searchBtn {
@@ -115,6 +178,7 @@ body {
   display: flex;
   align-items: center;
   gap: var(--size03);
+  padding-bottom: var(--size03);
 }
 
 #refreshBtn {
@@ -129,18 +193,17 @@ body {
 }
 
 #refreshBtn.rotating {
-  transform: scale(1.2) rotate(360deg) ;
+  transform: scale(1.2) rotate(360deg);
   transition: transform 1s ease;
 }
 
-#refreshBtn>svg {
+#refreshBtn > svg {
   height: var(--size05);
   align-self: center;
 }
 
 input[type="text"] {
   height: var(--size06);
-  width: 20vw;
   background-color: rgba(255, 255, 255, 0);
   color: var(--gradient2_fallback);
   border-radius: var(--size02);
@@ -159,12 +222,7 @@ input[type="text"] {
   transition-timing-function: ease;
 }
 
-input[type="text"]:hover:not(:focus) {
-  width: 25vw;
-}
-
 input[type="text"]:focus {
-  width: 40vw;
   padding: var(--size01);
   padding-left: var(--size02);
   font-size: var(--size05);
@@ -175,136 +233,99 @@ input[type="text"]::placeholder {
   color: white;
 }
 
-.knobs,
-.layer {
-  position: absolute;
-  top: 0px;
-  right: 0;
-  bottom: 0;
-  left: 0;
+#currentIcon > svg {
+  width: var(--size09);
 }
 
-.button {
-  position: relative;
-  top: 0px;
-  right: 0px;
-  width: 74px;
-  height: 36px;
-  overflow: hidden;
-}
-
-.button.r,
-.button.r .layer {
-  border-radius: 100px;
-}
-
-.checkbox {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  opacity: 0;
-  cursor: pointer;
-  z-index: 3;
-}
-
-.knobs {
-  z-index: 2;
-}
-
-.layer {
-  width: 100%;
-  background-color: #ffffff;
-  transition: 0.3s ease all;
-  z-index: 1;
-}
-
-#button-1 .knobs:before {
-  font-family: "Montserrat", sans-serif;
-  content: "°C";
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 20px;
-  height: 10px;
-  color: #fff;
-  font-size: var(--size04);
-  font-weight: bold;
-  text-align: center;
-  line-height: var(--size03);
-  padding: 9px 4px;
-  background-color: #03a9f4;
-  border-radius: 50%;
-  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
-}
-
-#button-1 .checkbox:checked + .knobs:before {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: bold;
-  font-style: normal;
-  content: "°F";
-  left: 42px;
-  background-color: #03a9f4;
-  color: #fff;
-}
-
-#button-1 .checkbox:checked ~ .layer {
-  background-color: #ffffff;
-}
-
-#button-1 .knobs,
-#button-1 .knobs:before,
-#button-1 .layer {
-  transition: 0.3s ease all;
-}
-
-#button-2 .knobs:before {
-  font-family: "Montserrat", sans-serif;
-  content: "EN";
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 20px;
-  height: 10px;
-  color: #fff;
-  font-size: var(--size03);
-  font-weight: bold;
-  text-align: center;
-  line-height: var(--size03);
-  padding: 9px 4px;
-  background-color: #03a9f4;
-  border-radius: 50%;
-  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
-}
-
-#button-2 .checkbox:checked + .knobs:before {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: bold;
-  font-style: normal;
-  content: "RU";
-  left: 42px;
-  background-color: #03a9f4;
-  color: #fff;
-}
-
-#button-2 .checkbox:checked ~ .layer {
-  background-color: #ffffff;
-}
-
-#button-2 .knobs,
-#button-2 .knobs:before,
-#button-2 .layer {
-  transition: 0.3s ease all;
-}
-
-#currentIcon>svg {
-  height: var(--size08);
-}
-
-.svgIcon>svg {
+.svgIcon > svg {
   fill: #fff;
   stroke: #fff;
+}
+
+#currentWindContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--size04)
+}
+
+#winddirArrow {
+  height: var(--size05);
+  transform: rotate(0deg) scaleY(1.4);
+}
+
+#upcomingCardContainer {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#upcomingHoursContainer, #upcomingDaysContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.underline {
+  height: 1px;
+  background-color: #fff;
+  width: 100%;
+  align-self: baseline;
+}
+
+.hoursCard, .daysCard {
+  width: 100%;
+  height: var(--size08);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  align-self: baseline;
+}
+
+.hoursCard {
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+}
+
+.hoursCard > .svgIcon > svg,
+.daysCard > .svgIcon > svg {
+  align-self: center;
+  width: var(--size07);
+}
+
+#upcomingHoursCardTitle, #upcomingDaysCardTitle {
+  text-align: left;
+  padding-bottom: var(--size03);
+  align-self: baseline;
+}
+
+.DC-day_container {
+  width: 100%;
+  display: flex;
+  gap: var(--size01)  
+}
+
+.DC-week {
+  width: 30%;
+  padding-left: 15%;
+  justify-self: left;
+}
+
+.DC-temp {
+  display: flex;
+  height: 70%;
+  gap: var(--size03)
+}
+
+.DC-temp-max {
+  align-self: flex-start;
+}
+
+.DC-temp-min {
+  align-self: flex-end;
+}
+
+.DC-temp-divider {
+  height: 80%;
+  width: 1px;
+  align-self: center;
+  background-color: #fff;
+  transform: rotate(20deg);
 }

@@ -14,7 +14,8 @@ import {
   getSpeedUnit,
   getPressureUnit,
   getNext12HoursData,
-  getUpcomingDaysData
+  getUpcomingDaysData,
+  getCity,
 } from "./data";
 import { icons } from "./icons";
 import "./translation";
@@ -46,7 +47,7 @@ function displayMainCard(data) {
     currentHumidity = document.getElementById("currentHumidity"),
     currentPressure = document.getElementById("currentPressure");
 
-  currentCity.innerText = data.resolvedAddress;
+  currentCity.innerText = `${getCity(data)}`;
   currentTemp.innerText = `${getCurrentTemp(data)} ${getTempUnit()}`;
   changeIcon(currentIcon, current.icon);
   currentFeelsLike.innerText = `${getTextContent("currentFeelsLike")} ${getCurrentFeelsLike(data)} ${getTempUnit()}`;
